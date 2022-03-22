@@ -11,14 +11,45 @@ declare class Rpc {
     toObject(): discordPresence;
     toString(): string;
     setName(name: string | null): this;
+    /**
+     * Bot ID
+     * @param id Bot ID containing assets
+     */
     setApplicationId(id: string | null): this;
+    /**
+     * Activity Type (CUSTOM can't choose)
+     * @param type Discord Activity Type
+     */
     setType(type: PresenceType | number): this;
+    /**
+     * 
+     * @param url URL of the game
+     */
     setUrl(url: string | null): this;
     setDetails(details: string | null): this;
     setState(state: string | null): this;
+    /**
+     * !!! NOT WORKING !!!
+     * @param button Button to set [Max: 2, not working]
+     * @example
+     * [
+     * { label: 'hello', url: 'https://google.com' },
+     * { label: 'hello2', url: 'https://google.com.vn' },
+     * ]
+     */
+    setButton(button: Array | null): this;
     setSyncId(sync_id: string | null): this;
     setId(id: string | null): this;
     setSessionId(session_id: string | null): this;
+    /**
+     * // Set party
+     * @param party
+     * @example 
+     * {
+     *    size: [1, 5],
+     *    id: RPC.uuid(),
+     * }
+     */
     setParty(party: discordPresence["party"]): this;
     setFlags(flags: number | null): this;
     setCreatedAt(created_at: number | null): this;
@@ -37,7 +68,15 @@ declare class Rpc {
     setAssetsSmallText(small_text: string | null): this;
     setStartTimestamp(start: number | null): this;
     setEndTimestamp(end: number | null): this;
+    /**
+     * 1 of 2 [min, max]
+     * @param size [1, 2]
+     */
     setPartySize(size: [number, number] | null): this;
+    /**
+     * 
+     * @param id Random String (Using uuid() to get random)
+     */
     setPartyId(id: string | null): this;
     setJoinSecret(secret: string | null): this;
     setSpectateSecret(secret: string | null): this;
@@ -141,6 +180,7 @@ interface rpcManager {
     CustomStatus: {
         new (CustomStatusGame?: CustomStatusGame): CustomStatus;
     };
+    uuid(): string;
 }
 interface emojiLike {
     id: string;
