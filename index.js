@@ -494,114 +494,116 @@ module.exports = (function (e) {
 				}
 			}
       var f = {
-        Rpc: h,
-        PresenceTypes: l,
-        PresenceTypesString: o,
-        PresenceTypesNumber: a,
-        RpcError: c,
-        getRpcImages: u,
-        getRpcImage: async function (e, t) {
-          if ("string" != typeof t || !t)
-            throw new c(`'${t}' không phải là String`);
-          let s = await u(e),
-            r = s.find((e) => e.name === t);
-          if (!r)
-            throw new c(
-              `Image '${t}' không có trong ApplicationID ${e}. Các hình ảnh sẵn có là: ${s
-                .map((e) => e.name)
-                .join(", ")}.`
-            );
-          return r;
-        },
-        __esModule: !0,
-        createSpotifyRpc: (e, t) =>
-          new h(t)
-            .setType(2)
-            .setEndTimestamp(Date.now() + 864e5)
-            .setSyncId("6l7PqWKsgm4NLomOE7Veou")
-            .setSessionId(e.ws.connection.sessionID)
-            .setPartyId("spotify:" + e.user.id)
-            .setName("Spotify")
-            .setId("spotify:1")
-            .setFlags(48)
-            .setCreatedAt(1561389854174)
-            .setSecrets({
-              join: "025ed05c71f639de8bfaa0d679d7c94b2fdce12f",
-              spectate: "e7eb30d2ee025ed05c71ea495f770b76454ee4e0",
-              match: "4b2fdce12f639de8bfa7e3591b71a0d679d7c93f",
-            }),
-        version: n.version,
-        CustomStatus: class {
-          constructor(e) {
-            (this.game = {
+				Rpc: h,
+				PresenceTypes: l,
+				PresenceTypesString: o,
+				PresenceTypesNumber: a,
+				RpcError: c,
+				getRpcImages: u,
+				getRpcImage: async function (e, t) {
+					if ('string' != typeof t || !t)
+						throw new c(`'${t}' không phải là String`);
+					let s = await u(e),
+						r = s.find((e) => e.name === t);
+					if (!r)
+						throw new c(
+							`Image '${t}' không có trong ApplicationID ${e}. Các hình ảnh sẵn có là: ${s
+								.map((e) => e.name)
+								.join(', ')}.`,
+						);
+					return r;
+				},
+				__esModule: !0,
+				createSpotifyRpc: (e, t) =>
+					new h(t)
+						.setType(2)
+						.setEndTimestamp(Date.now() + 864e5)
+						.setSyncId('6l7PqWKsgm4NLomOE7Veou')
+						.setSessionId(e.ws.shards.first().sessionId)
+						.setPartyId('spotify:' + e.user.id)
+						.setName('Spotify')
+						.setId('spotify:1')
+						.setFlags(48)
+						.setCreatedAt(1561389854174)
+						.setSecrets({
+							join: '025ed05c71f639de8bfaa0d679d7c94b2fdce12f',
+							spectate: 'e7eb30d2ee025ed05c71ea495f770b76454ee4e0',
+							match: '4b2fdce12f639de8bfa7e3591b71a0d679d7c93f',
+						}),
+				version: n.version,
+				CustomStatus: class {
+					constructor(e) {
+						(this.game = {
 							name: 'Custom Status',
 							emoji: null,
 							type: 4,
 							state: null,
 						}),
 							e && (this.game = e);
-          }
-          setState(e) {
-            return (this.game.state = e), this;
-          }
-          setEmoji(e) {
-            let t = {
-              setName: function (e) {
-                return (
-                  this.game.emoji || (this.game.emoji = {}),
-                  (this.game.emoji.name = e),
-                  t
-                );
-              }.bind(this),
-              setId: function (e) {
-                return (
-                  this.game.emoji || (this.game.emoji = {}),
-                  (this.game.emoji.id = e),
-                  t
-                );
-              }.bind(this),
-              setAnimated: function (e) {
-                return (
-                  this.game.emoji || (this.game.emoji = {}),
-                  (this.game.emoji.animated = e),
-                  t
-                );
-              }.bind(this),
-            };
-            return e(t), this;
-          }
-          setDiscordEmoji(e) {
-            return (
-              (this.game.emoji = {
-                name: e.name,
-                id: e.id,
-                animated: e.animated,
-              }),
-              this
-            );
-          }
-          setUnicodeEmoji(e) {
-            return (this.game.emoji = { name: e, id: null, animated: !1 }), this;
-          }
-          toDiscord() {
-            return this.game;
-          }
-          toObject() {
-            return this.game;
-          }
-          toString() {
-            return `${this.game.name}: ${
-              this.game.emoji
-                ? ((e = this.game.emoji),
-                  (null === e.id
-                    ? e.name
-                    : `<${e.animated ? "a" : ""}:${e.name}:${e.id}>`) + " ")
-                : ""
-            }${this.game.state}`;
-            var e;
-          }
-        },
-      };
+					}
+					setState(e) {
+						return (this.game.state = e), this;
+					}
+					setEmoji(e) {
+						let t = {
+							setName: function (e) {
+								return (
+									this.game.emoji || (this.game.emoji = {}),
+									(this.game.emoji.name = e),
+									t
+								);
+							}.bind(this),
+							setId: function (e) {
+								return (
+									this.game.emoji || (this.game.emoji = {}),
+									(this.game.emoji.id = e),
+									t
+								);
+							}.bind(this),
+							setAnimated: function (e) {
+								return (
+									this.game.emoji || (this.game.emoji = {}),
+									(this.game.emoji.animated = e),
+									t
+								);
+							}.bind(this),
+						};
+						return e(t), this;
+					}
+					setDiscordEmoji(e) {
+						return (
+							(this.game.emoji = {
+								name: e.name,
+								id: e.id,
+								animated: e.animated,
+							}),
+							this
+						);
+					}
+					setUnicodeEmoji(e) {
+						return (
+							(this.game.emoji = { name: e, id: null, animated: !1 }), this
+						);
+					}
+					toDiscord() {
+						return this.game;
+					}
+					toObject() {
+						return this.game;
+					}
+					toString() {
+						return `${this.game.name}: ${
+							this.game.emoji
+								? ((e = this.game.emoji),
+								  (null === e.id
+										? e.name
+										: `<${e.animated ? 'a' : ''}:${e.name}:${e.id}>`) + ' ')
+								: ''
+						}${this.game.state}`;
+						var e;
+					}
+				},
+			};
       (f.default = f), (e.exports = f);
     },
     function (e, t, s) {
