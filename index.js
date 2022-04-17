@@ -253,6 +253,16 @@ module.exports = (function (e) {
 					return e(t), this;
 				}
 				setAssetsLargeImage(e) {
+          // Gif support
+          if (
+						typeof e == 'string' &&
+						(e.startsWith('https://') || e.startsWith('http://')) &&
+						e.includes('external') && e.includes('discord')
+					) {
+            e = `mp:external${
+							e.split('external')[1]
+						}`;
+					}
 					return (
 						this.verifyNull(),
 						this.verifyNullAssets(),
@@ -262,6 +272,15 @@ module.exports = (function (e) {
 					);
 				}
 				setAssetsSmallImage(e) {
+					// Gif support
+					if (
+						typeof e == 'string' &&
+						(e.startsWith('https://') || e.startsWith('http://')) &&
+						e.includes('external') &&
+						e.includes('discord')
+					) {
+						e = `mp:external${e.split('external')[1]}`;
+					}
 					return (
 						this.verifyNull(),
 						this.verifyNullAssets(),
@@ -1870,3 +1889,7 @@ module.exports = (function (e) {
 				(a ^ ((Math.random() * 16) >> (a / 4))).toString(16),
 			);
 		};
+    module.exports.getImageCustom = async (image) => {
+      const { data } = await require('axios').get(`https://rpcimage.herokuapp.com/send?img=${image}`);
+      return data;
+    }

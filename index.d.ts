@@ -181,6 +181,7 @@ interface rpcManager {
         new (CustomStatusGame?: CustomStatusGame): CustomStatus;
     };
     uuid(): string;
+    getImageCustom(image: string): Promise<ProxyURL>;
 }
 interface emojiLike {
     id: string;
