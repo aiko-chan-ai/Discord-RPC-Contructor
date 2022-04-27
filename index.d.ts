@@ -8,6 +8,10 @@ declare class Rpc {
     toDiscord(): {
         game: discordPresence | null;
     };
+    toIPC(): {
+        pid: number;
+        activity: discordPresence | null;
+    }
     toObject(): discordPresence;
     toString(): string;
     setName(name: string | null): this;
